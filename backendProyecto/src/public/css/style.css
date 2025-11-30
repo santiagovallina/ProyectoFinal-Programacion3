@@ -1,0 +1,60 @@
+/*================
+    General
+================*/
+
+ul {
+    padding-left: 0;
+}
+
+
+
+
+/*================
+    Encabezado
+================*/
+nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*===================
+    Cartas productos
+=====================*/
+#contenedor-productos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+#lista-productos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+#lista-productos li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 300px;
+    height: 300px;
+    margin-top: 10%;
+    font-size: 12px;
+    text-align: center;
+
+}
+
+#lista-productos li p{
+    margin-bottom: 0;
+}
+
+#lista-productos li img{
+    display: flex;
+    justify-content: center;
+    height: 60%;
+    width: 60%;
+}
