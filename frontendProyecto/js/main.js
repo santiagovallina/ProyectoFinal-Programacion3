@@ -182,11 +182,12 @@ function vaciarCarrito(){
 const btnComprar = document.getElementById("btn-comprar");
 
 btnComprar.addEventListener("click", async (event) => {
+    
     event.preventDefault();
 
     const cliente = localStorage.getItem("cliente");
-    const total = calcularTotalCarrito(); // tu función que suma el carrito
-    const fecha = new Date().toISOString(); // opcional, podés dejar que el backend la genere
+    const total = calcularTotalCarrito(); 
+    const fecha = new Date().toISOString(); 
 
     const data = { cliente, total, fecha };
     console.log("Datos a enviar:", data);
