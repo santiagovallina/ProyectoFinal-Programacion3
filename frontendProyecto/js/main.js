@@ -122,6 +122,48 @@ function mostrarCarrito(){
     `;
 
     contenedorCarrito.innerHTML = htmlCarrito;
+    // Mando peticion para crear venta
+    const btnComprar = document.getElementById("btn-comprar");
+    const url = "http://localhost:3000";
+
+    btnComprar.addEventListener("click", async (event) => {
+        
+        let confirmacion = confirm("¡Querés realizar la compra?")
+        if(!confirmacion){
+            alert("Compra cancelada");
+        } else {
+            event.preventDefault();
+    
+            const cliente = localStorage.getItem("cliente");
+            const total = precioTotal(); 
+            const fecha = new Date().toISOString(); 
+    
+            const data = { cliente, total, fecha };
+            console.log("Datos a enviar:", data);
+    
+            try {
+                let response = await fetch(`${url}/ventas`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+    
+                let result = await response.json();
+                console.log("Respuesta JSON:", result);
+    
+                if (response.ok) {
+                    alert(`Compra realizada con éxito.`);
+                } else {
+                    alert("Error al crear el ticket: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error al enviar los datos: ", error);
+                alert("Error al procesar la solicitud");
+            }
+        }
+    });
 }
 
 //recibo el indice del producto, lo elimino del carrito, y luego muestro y actualizo el carrito
@@ -178,45 +220,7 @@ function vaciarCarrito(){
     imprimirContador(carrito)
 }
 
-// Mando peticion para crear venta
-const btnComprar = document.getElementById("btn-comprar");
 
-btnComprar.addEventListener("click", async (event) => {
-    
-    event.preventDefault();
-
-    const cliente = localStorage.getItem("cliente");
-    const total = calcularTotalCarrito(); 
-    const fecha = new Date().toISOString(); 
-
-    const data = { cliente, total, fecha };
-    console.log("Datos a enviar:", data);
-
-    try {
-        let response = await fetch(`${url}/tickets/crear-ticket`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-
-        console.log("Respuesta cruda:", response);
-
-        let result = await response.json();
-        console.log("Respuesta JSON:", result);
-
-        if (response.ok) {
-            alert(`Compra realizada con éxito. ID de venta: ${result.idVenta}`);
-            // acá podés vaciar el carrito si querés
-        } else {
-            alert("Error al crear el ticket: " + result.error);
-        }
-    } catch (error) {
-        console.error("Error al enviar los datos: ", error);
-        alert("Error al procesar la solicitud");
-    }
-});
 
 
 
@@ -229,3 +233,7 @@ function init (){
 }
 
 init()
+
+
+
+
