@@ -38,3 +38,31 @@ altaProductsForm.addEventListener("submit", async (event) => {
         alert("Error al procesar la solicitud");
     }
 })
+
+
+let altaUsers_container = document.getElementById("altaUsers-container");
+
+altaUsers_container.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let formData = new FormData(event.target);
+    let data = Object.fromEntries(formData.entries());
+
+    try{
+        let response = await fetch(`${url}/usuarios`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(response.ok){
+            let result = await response.json();
+            alert(result.message)
+        }
+    } catch(error) {
+        console.error("Error al enviar los datos: ", error);
+        alert("Error al procesar la solicitud");
+    }
+});

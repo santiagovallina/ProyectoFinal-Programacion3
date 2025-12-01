@@ -8,7 +8,7 @@ const PORT = enviroments.port;
 
 import cors from "cors";
 
-import { productRoutes, viewRoutes, ventasRoutes } from "./src/api/routes/index.js"; 
+import { productRoutes, viewRoutes, ventasRoutes, usuariosRoutes } from "./src/api/routes/index.js"; 
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
 // ================================
@@ -44,6 +44,7 @@ app.use(loggerUrl);
 app.use("/productos", productRoutes);
 app.use("/", viewRoutes);
 app.use("/ventas", ventasRoutes);
+app.use("/usuarios", usuariosRoutes);
 
 
 /* Arranca el servidor express en el puerto definido */
