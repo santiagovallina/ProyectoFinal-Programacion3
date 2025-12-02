@@ -1,0 +1,36 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<% if (typeof error !== "undefined") {%>
+<div class="error-message">
+    <% error %>
+</div>
+<% } %>
+
+<form id="login-form" action="/login" method="POST" autocomplete="off">
+
+    <label for="correoUser">Correo</label>
+    <input type="email" name="correo" id="correoUser" required> 
+
+    <label for="passwordUser">Password</label>
+    <input type="password" name="password" id="passwordUser" required>
+
+    <input type="submit" class="btn-login" value="Login">
+    <input type="button" id="acceso" class="btn-login" value="Acceso rápido">
+</form>
+
+<script>
+    let emailUser = document.getElementById("correoUser");
+    let passwordUser = document.getElementById("passwordUser");
+
+    let acceso_rapido = document.getElementById("acceso");
+    acceso_rapido.addEventListener("click", () => {
+        emailUser.value = "santi@vallina.com";
+        passwordUser.value = "santi"
+    });
+</script>
+
+
+
+
+<%- include("partials/footer.ejs") %>

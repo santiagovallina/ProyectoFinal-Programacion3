@@ -29,6 +29,11 @@ header{
     padding-left: 2%;
 }
 
+#logo a{
+    text-decoration: none;   
+    color: inherit;   
+}
+
 #carrito{
     padding-right: 2%;
 }
@@ -77,12 +82,24 @@ header{
 /*=============== 
     CARRITO
 ================= */
+#carrito a{
+    text-decoration: none;   
+    color: inherit; 
+}
 
 .bloque-item{
     list-style: none;
     display: flex;
     justify-content: space-evenly;
 }
+
+#contenedor-nombre-item{
+    width: 500px;
+    display: flex;
+    justify-content: baseline;
+}
+
+
 
 .boton-eliminar{
     background-color: rgba(27, 156, 195, 1);

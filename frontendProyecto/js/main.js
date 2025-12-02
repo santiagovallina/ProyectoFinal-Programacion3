@@ -33,7 +33,7 @@ const alumno = {
     apellido: "Vallina"
 };
 
-function imprimirDatosAlumno() {
+function imprimirDatosCliente() {
     const cliente = localStorage.getItem("cliente");
     const divNombre = document.getElementById("nombre")
     
@@ -91,7 +91,6 @@ function agregarACarrito(idProducto){
     }
 
     console.log(carrito);
-    mostrarCarrito();
     actualizarCarrito();
     imprimirContador(carrito)
 }
@@ -128,7 +127,7 @@ function mostrarCarrito(){
 
     btnComprar.addEventListener("click", async (event) => {
         
-        let confirmacion = confirm("¡Querés realizar la compra?")
+        let confirmacion = confirm("¿Querés realizar la compra?")
         if(!confirmacion){
             alert("Compra cancelada");
         } else {
@@ -208,8 +207,6 @@ function precioTotal(){
 
 
 
-
-
 /* Ejercicio 9 */
 
 //vacío el carrito iniciando el array sin nada, lo muestro y lo actualizo
@@ -221,15 +218,10 @@ function vaciarCarrito(){
 }
 
 
-
-
-
-
 function init (){
-    imprimirDatosAlumno()
+    imprimirDatosCliente()
     imprimirContador(carrito)
     mostrarLista(productos)
-    mostrarCarrito()
 }
 
 init()

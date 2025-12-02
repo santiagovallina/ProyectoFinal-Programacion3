@@ -19,7 +19,17 @@ const validateId = (req, res, next) => {
     next();
 }
 
+/*Permite proteger las rutas de tu aplicacion para que solo
+los usuarios logueados puedan acceder*/
+const requireLogin = (req, res, next) => {
+    if(!req.session.user){
+        return res.redirect("/login");
+    }
+    next();
+}
+
 export{
     loggerUrl,
     validateId,
+    requireLogin
 }
