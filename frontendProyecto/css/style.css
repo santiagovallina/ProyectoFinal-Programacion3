@@ -59,7 +59,7 @@ header{
 
 #contenedor-productos{
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    grid-template-columns: repeat(3, 1fr); 
     justify-items: center;
     padding: 30px
 }

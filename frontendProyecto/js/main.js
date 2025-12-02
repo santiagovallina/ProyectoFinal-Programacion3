@@ -26,13 +26,6 @@ fetch("http://localhost:3000/productos")
 barraBusqueda.addEventListener("input", filtrarProducto);
 
 
-/* Ejercicio 2 */
-const alumno = {
-    dni: "42375241",
-    nombre: "Santiago",
-    apellido: "Vallina"
-};
-
 function imprimirDatosCliente() {
     const cliente = localStorage.getItem("cliente");
     const divNombre = document.getElementById("nombre")
@@ -41,9 +34,6 @@ function imprimirDatosCliente() {
     console.log(`Cliente: ${cliente}`);
 }
 
-
-
-/* Ejercicio 3 */
 
 /* recorro todos los elementos del array y con cada uno creo un bloque
 de código html */
@@ -63,9 +53,6 @@ function mostrarLista(array){
 }
 
 
-
-/* Ejercicio 4 */
-
 //recorro con filter y muestro los que su nombre coincida con lo ingresado
 function filtrarProducto(){
     let valorBusqueda = barraBusqueda.value.toLowerCase(); 
@@ -75,8 +62,6 @@ function filtrarProducto(){
     mostrarLista(productosFiltrados);
 }
 
-
-/* Ejercicio 5 */
 
 /* Recorro el carrito. Si la fruta ya se encuentra en este, le sumo uno a la cantidad.
     Si no está en el array, lo agrega. Muestra el carrito y lo actualiza.*/
@@ -175,25 +160,18 @@ function eliminarDelCarrito(indiceDelObj)
 }
 
 
-
-/* Ejercicio 6 */
-
 //guardo el estado del carrito
-function actualizarCarrito() 
-{
+function actualizarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 
-
-/* Ejercicio 7 */
 //cuento el total de productos en el carrito 
 function imprimirContador(lista) {
     const divContador = document.getElementById("carrito-texto");
     const totalProductos = lista.reduce((acumulador, producto) => acumulador + producto.cantidad, 0);
     divContador.textContent = `Carrito: ${totalProductos}`;
 }
-
 
 
 // recorro los productos del carrito y sumo los precios de cada uno
@@ -205,9 +183,6 @@ function precioTotal(){
     return precioTotal;
 }
 
-
-
-/* Ejercicio 9 */
 
 //vacío el carrito iniciando el array sin nada, lo muestro y lo actualizo
 function vaciarCarrito(){
