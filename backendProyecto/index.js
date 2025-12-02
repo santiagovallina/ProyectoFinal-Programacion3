@@ -2,27 +2,19 @@ import express from "express";
 const app = express();
 
 import connection from "./src/api/database/db.js";
-import enviroments from "./src/api/config/enviroments.js"; // Importamos las variables de entorno para definir el puerto
+import enviroments from "./src/api/config/enviroments.js";
 
 const PORT = enviroments.port;
 
 import cors from "cors";
+import session from "express-session";
 
 import { productRoutes, viewRoutes, ventasRoutes, usuariosRoutes } from "./src/api/routes/index.js"; 
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
-// ================================
-import path from "path";/* path: modulo nativo de node.js para manejar rutas de archivo y carpeta de 
-forma segura  */
-import { fileURLToPath } from "url"; /* convierte la URL del archivo actual 
-(ejemplo: file:///C:/proyecto/index.js) en una ruta real del sistema (C:/proyecto/index.js) */
+import { __dirname, join } from "./src/api/utils/index.js"
 
-import session from "express-session";
 
-const __filename = fileURLToPath(import.meta.url); /* guarda la ruta completa
-del archivo actual (index.js) */
-const __dirname = path.dirname(__filename); /* guarda 
-la carpeta del archivo*/
 
 
 
@@ -103,13 +95,11 @@ app.post("/logout", (req, res) => {
 
 /* SERVIR ARCHIVOS ESTATICOS: Le decís a Express: “todo lo que esté dentro
 de src/views puede pedirse directamente desde el navegador”. */ 
-app.use(express.static(path.join(__dirname, "src/public")));
+app.set("views", join(__dirname, "src/views")); // Indicamos la ruta de las vistas en nuestro proyecto
 
-
+app.use(express.static(join(__dirname, "src/public")));
 app.set("view engine", "ejs"); // Configuramos EJS como motor de plantillas
-app.set("views", path.join(__dirname, "src/views")); // Indicamos la ruta de las vistas en nuestro proyecto
 
-app.use(express.static(path.join(__dirname, "src/public")));
 
 
 
@@ -130,7 +120,6 @@ app.listen(PORT, async () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
-app.set("view engine", "ejs"); // Configuramos EJS como motor de plantillas
-app.set("views", path.join(__dirname, "src/views")); // Indicamos la ruta de las vistas en nuestro proyecto
+
 
 

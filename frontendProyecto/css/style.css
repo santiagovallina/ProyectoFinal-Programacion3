@@ -61,7 +61,6 @@ header{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
     justify-items: center;
-     /* espacio entre cards */
     padding: 30px
 }
 
